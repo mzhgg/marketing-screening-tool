@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>省省 - 优惠券人群筛选系统</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- 6.1 顶部导航栏 -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <div class="brand">
+                <div class="kangaroo-avatar">
+                    <i class="fas fa-kangaroo"></i>
+                </div>
+                <span class="brand-name">省省</span>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <div class="user-info">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Ccircle cx='20' cy='20' r='20' fill='%23FFD100'/%3E%3Ctext x='20' y='26' text-anchor='middle' font-size='18' fill='%23333'%3EU%3C/text%3E%3C/svg%3E" alt="用户头像" class="user-avatar">
+                <span class="username">张三</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <button class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                退出
+            </button>
+        </div>
+    </header>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <!-- 6.2 左侧区域（人群定义区） -->
+        <aside class="left-panel">
+            <h2 class="section-title">人群筛选</h2>
+
+            <!-- 筛选维度1：历史核销率区间 -->
+            <div class="filter-group">
+                <h3 class="filter-title">历史核销率区间</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="redemption" value="0-10">
+                        <span class="checkmark"></span>
+                        0-10%
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="redemption" value="10-20">
+                        <span class="checkmark"></span>
+                        10%-20%
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="redemption" value="20-30">
+                        <span class="checkmark"></span>
+                        20%-30%
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="redemption" value="30+">
+                        <span class="checkmark"></span>
+                        30%以上
+                    </label>
+                    <label class="checkbox-item custom-input">
+                        <input type="checkbox" name="redemption" value="custom">
+                        <span class="checkmark"></span>
+                        自定义：
+                        <input type="number" placeholder="0" class="custom-range" id="redemptionMin">%-<input type="number" placeholder="100" class="custom-range" id="redemptionMax">%
+                    </label>
+                </div>
+            </div>
+
+            <!-- 筛选维度2：近30天活跃天数 -->
+            <div class="filter-group">
+                <h3 class="filter-title">近30天活跃天数</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="activity" value="0-3">
+                        <span class="checkmark"></span>
+                        0-3天
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="activity" value="4-7">
+                        <span class="checkmark"></span>
+                        4-7天
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="activity" value="8-15">
+                        <span class="checkmark"></span>
+                        8-15天
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="activity" value="15+">
+                        <span class="checkmark"></span>
+                        15天以上
+                    </label>
+                    <label class="checkbox-item custom-input">
+                        <input type="checkbox" name="activity" value="custom">
+                        <span class="checkmark"></span>
+                        自定义：
+                        <input type="number" placeholder="0" class="custom-range" id="activityMin">-<input type="number" placeholder="30" class="custom-range" id="activityMax">天
+                    </label>
+                </div>
+            </div>
+
+            <!-- 筛选维度3：业务线覆盖数 -->
+            <div class="filter-group">
+                <h3 class="filter-title">业务线覆盖数</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="business" value="1">
+                        <span class="checkmark"></span>
+                        1条
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="business" value="2-3">
+                        <span class="checkmark"></span>
+                        2-3条
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="business" value="4+">
+                        <span class="checkmark"></span>
+                        4条以上
+                    </label>
+                    <label class="checkbox-item custom-input">
+                        <input type="checkbox" name="business" value="custom">
+                        <span class="checkmark"></span>
+                        自定义：
+                        <input type="number" placeholder="1" class="custom-range" id="businessMin">条
+                    </label>
+                </div>
+            </div>
+
+            <!-- 筛选维度4：用户分群标签 -->
+            <div class="filter-group">
+                <h3 class="filter-title">用户分群标签</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="tag" value="high-value-sensitive">
+                        <span class="checkmark"></span>
+                        高价值高敏感
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="tag" value="mid-value-potential">
+                        <span class="checkmark"></span>
+                        中价值潜力
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="tag" value="high-value-insensitive">
+                        <span class="checkmark"></span>
+                        高价值低敏感
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="tag" value="low-value-dependent">
+                        <span class="checkmark"></span>
+                        低价值依赖
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="tag" value="lost-dormant">
+                        <span class="checkmark"></span>
+                        流失沉睡
+                    </label>
+                </div>
+            </div>
+
+            <!-- 筛选维度5：风险等级 -->
+            <div class="filter-group">
+                <h3 class="filter-title">风险等级</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="risk" value="normal" checked>
+                        <span class="checkmark"></span>
+                        正常
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="risk" value="low">
+                        <span class="checkmark"></span>
+                        低风险
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" name="risk" value="medium">
+                        <span class="checkmark"></span>
+                        中风险
+                    </label>
+                    <span class="risk-note">（高风险自动排除）</span>
+                </div>
+            </div>
+
+            <!-- ID上传区 -->
+            <div class="upload-section">
+                <h3 class="filter-title">上传用户ID</h3>
+                <div class="upload-area" id="uploadArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>拖拽或点击上传CSV文件</p>
+                    <input type="file" id="fileInput" accept=".csv" hidden>
+                </div>
+                <div class="file-info" id="fileInfo" style="display: none;">
+                    <i class="fas fa-file-csv"></i>
+                    <span class="file-name" id="fileName"></span>
+                    <button class="remove-file" id="removeFile">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 人群预览卡片 -->
+            <div class="preview-card">
+                <div class="preview-stat">
+                    <span class="stat-label">人群规模</span>
+                    <span class="stat-value highlight" id="crowdSize">1.8万人</span>
+                </div>
+                <div class="preview-stat">
+                    <span class="stat-label">平均预测核销率</span>
+                    <span class="stat-value highlight" id="predRedemption">35.2%</span>
+                </div>
+                <div class="preview-stat">
+                    <span class="stat-label">数据更新时间</span>
+                    <span class="stat-value update-time" id="updateTime">刚刚更新</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 6.3 中部区域（策略建议区） -->
+        <section class="center-panel">
+            <div class="crowd-header">
+                <div class="crowd-name-edit">
+                    <input type="text" id="crowdName" value="未命名人群" class="crowd-name-input">
+                </div>
+                <span class="crowd-count" id="crowdCountDisplay">1.8万人</span>
+            </div>
+
+            <!-- 策略建议卡片 -->
+            <div class="strategy-card">
+                <h3 class="card-title">策略建议</h3>
+                <div class="strategy-content">
+                    <div class="strategy-item">
+                        <span class="strategy-label">券面额</span>
+                        <span class="strategy-value" id="couponAmount">8元</span>
+                        <span class="strategy-basis">（依据：人群历史客单价65元，不超过15%）</span>
+                    </div>
+                    <div class="strategy-item">
+                        <span class="strategy-label">使用门槛</span>
+                        <span class="strategy-value" id="threshold">60元</span>
+                        <span class="strategy-basis">（依据：匹配面额，平衡核销率与成本）</span>
+                    </div>
+                    <div class="strategy-item">
+                        <span class="strategy-label">有效期</span>
+                        <span class="strategy-value" id="validity">5天</span>
+                        <span class="strategy-basis">（依据：中价值潜力用户活跃度适中，需合理期限）</span>
+                    </div>
+                    <div class="strategy-item">
+                        <span class="strategy-label">预计核销率</span>
+                        <span class="strategy-value highlight" id="estRedemption">35.2%</span>
+                        <span class="strategy-basis">（依据：LightGBM模型预测）</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 参数调整区 -->
+            <div class="adjustment-section">
+                <h3 class="card-title">参数调整</h3>
+                <div class="adjustment-controls">
+                    <div class="control-group">
+                        <label>券面额：<input type="number" id="adjCoupon" value="8" min="5" max="10">元</label>
+                        <span class="range-hint">范围：5-10元</span>
+                    </div>
+                    <div class="control-group">
+                        <label>使用门槛：<input type="number" id="adjThreshold" value="60" min="50" max="70">元</label>
+                        <span class="range-hint">范围：50-70元</span>
+                    </div>
+                    <div class="control-group">
+                        <label>有效期：<input type="number" id="adjValidity" value="5" min="3" max="7">天</label>
+                        <span class="range-hint">范围：3-7天</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 预计成本效益面板 -->
+            <div class="benefit-panel">
+                <div class="benefit-stats">
+                    <div class="benefit-item">
+                        <span class="benefit-label">预计补贴支出</span>
+                        <span class="benefit-value" id="estCost">14.4万元</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-label">预计撬动GMV</span>
+                        <span class="benefit-value" id="estGMV">288万元</span>
+                    </div>
+                    <div class="benefit-item">
+                        <span class="benefit-label">预计ROI</span>
+                        <span class="benefit-value highlight" id="estROI">20.0</span>
+                    </div>
+                </div>
+                <div class="kangaroo-mascot">
+                    <div class="kangaroo-icon">
+                        <i class="fas fa-kangaroo"></i>
+                    </div>
+                    <div class="speech-bubble">
+                        <i class="fas fa-level-up-alt"></i>
+                        调整参数，看看效果！
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6.4 右侧区域（参照信息区） -->
+        <aside class="right-panel">
+            <h2 class="section-title">历史投放摘要</h2>
+
+            <!-- 柱状图 -->
+            <div class="chart-container">
+                <div class="bar-chart" id="barChart">
+                    <div class="bar-item">
+                        <div class="bar" style="height: 28.5%;" data-value="28.5%"></div>
+                        <span class="bar-label">投放1</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar" style="height: 29.1%;" data-value="29.1%"></div>
+                        <span class="bar-label">投放2</span>
+                    </div>
+                    <div class="bar-item">
+                        <div class="bar" style="height: 30.2%;" data-value="30.2%"></div>
+                        <span class="bar-label">投放3</span>
+                    </div>
+                </div>
+                <div class="chart-y-axis">
+                    <span>35%</span>
+                    <span>30%</span>
+                    <span>25%</span>
+                    <span>20%</span>
+                </div>
+            </div>
+
+            <!-- 相似人群Benchmark -->
+            <div class="benchmark-card">
+                <h3 class="card-title">相似人群Benchmark</h3>
+                <div class="benchmark-list">
+                    <div class="benchmark-item">
+                        <div class="benchmark-tag">人群1</div>
+                        <div class="benchmark-desc">中价值潜力+近30天活跃≥4天</div>
+                        <div class="benchmark-stats">
+                            <span>券面额7元，门槛55元</span>
+                            <span>核销率34.1%</span>
+                            <span>ROI 19.5</span>
+                        </div>
+                    </div>
+                    <div class="benchmark-item">
+                        <div class="benchmark-tag">人群2</div>
+                        <div class="benchmark-desc">中价值潜力+近30天活跃≥6天</div>
+                        <div class="benchmark-stats">
+                            <span>券面额9元，门槛65元</span>
+                            <span>核销率36.8%</span>
+                            <span>ROI 18.7</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 风险过滤摘要 -->
+            <div class="risk-summary-card">
+                <h3 class="card-title">风险过滤摘要</h3>
+                <div class="risk-stats">
+                    <div class="risk-item">
+                        <span class="risk-label">高风险用户</span>
+                        <span class="risk-value" id="highRiskCount">180人</span>
+                    </div>
+                    <div class="risk-item">
+                        <span class="risk-label">中风险用户</span>
+                        <span class="risk-value" id="midRiskCount">360人</span>
+                    </div>
+                </div>
+                <button class="view-detail-btn" id="viewRiskDetail">
+                    <i class="fas fa-eye"></i> 查看明细
+                </button>
+            </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
